@@ -356,8 +356,8 @@ $(window).load(function(){
 					} else {
 						dC.queue.remove(b);
 						localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
+						$("div#uP ul#pl li:eq(" + b + ")").remove();
 					}
-					$("div#uP ul#pl li:eq(" + b + ")").remove();
 				}
 			}
 			showAlert('Video Removed From Queue', 5000, 2000);
@@ -482,7 +482,7 @@ function addItemYTQueue(a){
 	$.each(dC.queue, function(n,item){
 		exists = $.inArray(a[0], item);
 		if (exists > -1) {
-			showAlert('<b class="errror">Error!</b> This video is already in the queue.', 5000, 2000);
+			showAlert('<b class="error">Error!</b> This video is already in the queue.', 5000, 2000);
 			return false;
 		}
 	});
