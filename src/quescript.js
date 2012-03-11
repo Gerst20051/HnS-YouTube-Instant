@@ -1,4 +1,4 @@
-var pcontent = '<div id="tls"><div class="tl config config_e" title="Show Your Playlist"></div><div class="tl arrowright arrowright_m" title="Skip"></div><div class="tl pinleft pinleft_m" title="Exact Search"></div><div class="tl refresh refresh_b" title="Random From Playlist"></div><div class="tl search" title="Show Song Playlists"></div><div class="alerts"></div></div><div id="oW"><div id="w"><div id="hd" class="cf"><div id="l"><div><span>HnS YouTube Instant</span></div></div><input type="text" id="sB" value="" spellcheck="false"></input><div id="sTW"><div id="sTK"><strong>Search YouTube Instantly</strong></div></div><div id="sug"></div></div><div id="m" class="cf"><div id="vD"><div id="iVD">Loading...</div></div><div id="pD"><div id="pW"><div id="pl" class="cf">&nbsp;</div></div><div id="uP"><div id="pI"><input type="text" id="pB" value="Search The Queue" spellcheck="false"></input></div><ul id="pl" class="cf"></ul></div><div id="sP"><div id="pH"><div id="sPI"><input type="text" id="sPB" value="Search Playlists" spellcheck="false"></input></div><div id="sH"><div id="pN">&nbsp;</div><img id="btp" src="i/back.png"></div></div><ul id="pls" class="cf">&nbsp;</ul><div id="plsr" class="cf">&nbsp;</div></div></div><div id="ft" class="cf"><div id="api"><iframe id="fblike" scrolling="no" frameborder="0" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fyoutube.com&layout=standard&show_faces=true&action=like&font=arial&colorscheme=light&height=70&width=720&send=true" allowTransparency="true"></iframe><div id="sub"><iframe id="twitter" scrolling="no" frameborder="0" src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&text=Watch%20Videos%20On%20YouTube&url=http%3A%2F%2Fwww.youtube.com&via=HnSYouTube" allowtransparency="true"></iframe><iframe id="fbshare" scrolling="no" frameborder="0" src="http://s.youtube-3rd-party.com/facebook_share.html?appid=87741124305&href=http%3A%2F%2Fwww.youtube.com&base_url=http%3A%2F%2Fwww.youtube.com&locale=US" allowtransparency="true"></iframe></div></div></div></div></div></div><div id="hnsft"><div id="fbauth"><fb:login-button autologoutlink="true" perms="user_likes,friends_likes,publish_stream"></fb:login-button><div id="fb-root"></div></div><div id="buzz-container"><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="normal-button" data-url="http://hnsyoutube.webs.com"></a></div><div id="plusone-container"><div class="g-plusone" data-size="standard" data-count="true" data-href="http://hnsyoutube.webs.com"></div></div><iframe id="hnslike" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhnsyoutube.webs.com&layout=standard&show_faces=false&action=like&font=arial&colorscheme=light&height=40&width=550&send=true" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div><img id="hc" src="http://www.website-hit-counters.com/cgi-bin/image.pl?URL=572179-3134">';
+var pcontent = '<div id="tls"><div class="tl config config_e" title="Show Your Playlist"></div><div class="tl arrowright arrowright_m" title="Skip"></div><div class="tl save save_m" title="Share This Queue"></div><div class="tl pinleft pinleft_m" title="Exact Search"></div><div class="tl refresh refresh_b" title="Random From Playlist"></div><div class="tl search" title="Show Song Playlists"></div><div class="alerts"></div></div><div id="oW"><div id="w"><div id="hd" class="cf"><div id="l"><div><span>HnS YouTube Instant</span></div></div><input type="text" id="sB" value="" spellcheck="false"></input><div id="sTW"><div id="sTK"><strong>Search YouTube Instantly</strong></div></div><div id="sug"></div></div><div id="m" class="cf"><div id="vD"><div id="iVD">Loading...</div></div><div id="pD"><div id="pW"><div id="pl" class="cf">&nbsp;</div></div><div id="uP"><div id="pI"><input type="text" id="pB" value="Search The Queue" spellcheck="false"></input></div><ul id="pl" class="cf"></ul></div><div id="sP"><div id="pH"><div id="sPI"><input type="text" id="sPB" value="Search Playlists" spellcheck="false"></input></div><div id="sH"><div id="pN">&nbsp;</div><img id="btp" src="i/back.png"></div></div><ul id="pls" class="cf">&nbsp;</ul><div id="plsr" class="cf">&nbsp;</div></div></div><div id="ft" class="cf"><div id="api"><iframe id="fblike" scrolling="no" frameborder="0" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fyoutube.com&layout=standard&show_faces=true&action=like&font=arial&colorscheme=light&height=70&width=720&send=true" allowTransparency="true"></iframe><div id="sub"><iframe id="twitter" scrolling="no" frameborder="0" src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&text=Watch%20Videos%20On%20YouTube&url=http%3A%2F%2Fwww.youtube.com&via=HnSYouTube" allowtransparency="true"></iframe><iframe id="fbshare" scrolling="no" frameborder="0" src="http://s.youtube-3rd-party.com/facebook_share.html?appid=87741124305&href=http%3A%2F%2Fwww.youtube.com&base_url=http%3A%2F%2Fwww.youtube.com&locale=US" allowtransparency="true"></iframe></div></div></div></div></div></div><div id="hnsft"><div id="fbauth"><fb:login-button autologoutlink="true" perms="user_likes,friends_likes,publish_stream"></fb:login-button><div id="fb-root"></div></div><div id="buzz-container"><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="normal-button" data-url="http://hnsyoutube.webs.com"></a></div><div id="plusone-container"><div class="g-plusone" data-size="standard" data-count="true" data-href="http://hnsyoutube.webs.com"></div></div><iframe id="hnslike" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhnsyoutube.webs.com&layout=standard&show_faces=false&action=like&font=arial&colorscheme=light&height=40&width=550&send=true" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div><img id="hc" src="http://www.website-hit-counters.com/cgi-bin/image.pl?URL=572179-3134">';
 var dC = {
 	"devkey": "AI39si6-KJa9GUrvoNKGEh0rZWfJ2yFrPOxIN79Svnz9zAhosYHrbZfpADwJhd3v6TNl9DbvTtUS_deOcoNCodgvTqq3kxcflw",
 	"title": "HnS YouTube Instant",
@@ -13,6 +13,7 @@ var dC = {
 	"sresults": [],
 	"cplaylist": "",
 	"csplaylist": "",
+	"hashqueue": false,
 	"exactSearch": false,
 	"pSResults": false,
 	"sBFocus": false,
@@ -53,6 +54,18 @@ $.fn.digits = function(){
 	});
 };
 
+function getHash() {
+	return decodeURIComponent(window.location.hash.substring(1));
+}
+
+function clearHash() {
+	window.location.replace("#");
+}
+
+function setHash(a) {
+	window.location.replace("#" + encodeURI(a));
+}
+
 function getTitle(){
 	return document.title;
 }
@@ -74,6 +87,7 @@ function removeChars(c, d){
 		return d;
 	}
 }
+
 Array.prototype.remove = function(a, b){
 	var c = this.slice(((b || a) + 1) || this.length);
 	this.length = (a < 0) ? (this.length + a) : a;
@@ -156,17 +170,24 @@ function div_selection(e){
 	}
 }
 
-function loadPlaylist(){
-	if (dC.sLS){
+function loadQueue(){
+	if (getHash().length > 0) {
+		dC.queue = $.parseJSON(Base64.decode(getHash()));
+		if (!$.isArray(dC.queue) || dC.queue.length < 1) {
+			clearHash();
+			showAlert('<b class="error">Error!</b> Not Valid Queue', 5000, 2000);
+		} else dC.hashqueue = true;
+	}
+	if (dC.sLS && !dC.hashqueue){
 		if (localStorage.getItem('queue')){
 			dC.queue = $.parseJSON(Base64.decode(localStorage.getItem('queue')));
 		}
-		if (dC.queue.length > 0){
-			$.each(dC.queue, function(n, item){
-				$("div#uP ul#pl").append('<li id="' + item[0] + '" style="background-image:url(' + item[2] + ')">' + item[1] + '</li>');
-			});
-		} else $("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
 	}
+	if (dC.queue.length > 0){
+		$.each(dC.queue, function(n, item){
+			$("div#uP ul#pl").append('<li id="' + item[0] + '" style="background-image:url(' + item[2] + ')">' + item[1] + '</li>');
+		});
+	} else $("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
 }
 
 function getSongPlaylists(){
@@ -236,8 +257,15 @@ $(window).load(function(){
 			$("div#sP").hide();
 		}
 	});
-	$("div.tl.refresh").click(function(){
-		loadRandomVideo();
+	$("div.tl.arrowright").click(function(){
+		var reply = prompt("Admin Access Required To Skip Video", "");
+		if (reply != dC.remove) return;
+		goNextVideo();
+		showAlert('Video Skipped',5000,2000);
+	});
+	$("div.tl.save").click(function(){
+		if (dC.queue.length > 0) prompt("Here is the link to share your current queue!","http://hnsyoutube.webs.com/quetube.html#"+Base64.encode(json_encode(dC.queue)));
+		else showAlert('<b class="error">Error!</b> Current Queue is empty!',5000,2000);
 	});
 	$("div.tl.pinleft").click(function(){
 		dC.exactSearch = !dC.exactSearch;
@@ -251,11 +279,8 @@ $(window).load(function(){
 			doInstantSearch();
 		}
 	});
-	$("div.tl.arrowright").click(function(){
-		var reply = prompt("Admin Access Required To Skip Video", "");
-		if (reply != dC.remove) return;
-		goNextVideo();
-		showAlert("Video Skipped");
+	$("div.tl.refresh").click(function(){
+		loadRandomVideo();
 	});
 	$("div.tl.search").click(function(){
 		dC.tl.playlists = !dC.tl.playlists;
@@ -304,23 +329,38 @@ $(window).load(function(){
 		$("input[type='text']#sB").val(c);
 		doInstantSearch();
 	});
-	$("div#uP ul#pl li").live('mousedown', function(e){ /* TODO */
+	$("div#uP ul#pl li").live('mousedown', function(e){
+		if (dC.queue.length < 1 || dC.hashqueue) return;
 		var a = new div_selection(e);
 		a = a.target_html();
+		var b = -1;
 		if (IsRightButtonClicked(e)){
 			e.preventDefault();
 			var reply = prompt("Admin Access Required To Remove Video From Queue", "");
-			if (reply == dC.remove) showAlert('Video Removed From Queue');
-			/*
-			var b = dC.queue.vIndex(a);
-			dC.queue.remove(b);
-			localStorage.setItem("queue", dC.queue.join('|||'));
-			if (dC.queue.length == 0){
-				$("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
-				localStorage.removeItem('queue');
+			if (reply != dC.remove) return;
+			$.each(dC.queue, function(i,item){
+				if (item[1] == a) {
+					b = i;
+					return false;
+				}
+			});
+			if (b > -1) {
+				if (dC.queue.length == 1){
+					$("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
+					stopVideo();
+					dC.queue.remove(b);
+					localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
+				} else {
+					if (b == 0) {
+						goNextVideo();
+					} else {
+						dC.queue.remove(b);
+						localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
+					}
+					$("div#uP ul#pl li:eq(" + b + ")").remove();
+				}
 			}
-			$("div#uP ul#pl li").remove(":contains('" + a + "')");
-			*/
+			showAlert('Video Removed From Queue', 5000, 2000);
 		}
 	});
 	$("div#sP ul#pls li").live('click', function(e){
@@ -430,14 +470,21 @@ function onPlayerStateChange(a){
 
 function onPlayerError(a){
 	goNextVideo();
-	showAlert("Error! oPE Type: " + a, 5000, 2000);
+	showAlert('<b class="error">Error!</b> oPE Type: ' + a, 5000, 2000);
 }
 
 function addItemYTQueue(a){
+	if (dC.hashqueue) {
+		showAlert('<b class="error">Error!</b> <b>Can\'t view or create your own queue while viewing a shared queue.</b> <a href="http://hnsyoutube.webs.com/quetube.html">Click here</a> to create or view your queue!', 5000, 2000);
+		return;
+	}
 	var exists = -1;
 	$.each(dC.queue, function(n,item){
 		exists = $.inArray(a[0], item);
-		if (exists > -1) return false;
+		if (exists > -1) {
+			showAlert('<b class="errror">Error!</b> This video is already in the queue.', 5000, 2000);
+			return false;
+		}
 	});
 	if (exists == -1 || isNaN(exists)){
 		if (dC.queue.length == 0) {
@@ -447,7 +494,7 @@ function addItemYTQueue(a){
 		dC.queue.push(a);
 		localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
 		$("div#uP ul#pl").append('<li id="' + a[0] + '" style="background-image:url(' + a[2] + ')">' + a[1] + '</li>');
-		showAlert("<b>Added To Queue #" + dC.queue.length + ":</b> " + a[1], 5000, 2000);
+		showAlert('<b>Added To Queue #' + dC.queue.length + ':</b> ' + a[1], 5000, 2000);
 	}
 }
 
@@ -539,7 +586,7 @@ function goNextVideo(){
 		stopVideo();
 		$("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
 	}
-	localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
+	if (!dC.hashqueue) localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
 }
 
 function doInstantSearch(){
@@ -562,7 +609,7 @@ function doInstantSearch(){
 		dataType: "script",
 		timeout: 2000,
 		error: function(a, b){
-			showAlert("Error! dIS Type: " + b, 5000, 2000);
+			showAlert('<b class="error">Error!</b> dIS Type: ' + b, 5000, 2000);
 		}
 	});
 	xhrWorking = true;
@@ -631,7 +678,7 @@ function getTopSearchResult(e){
 			}
 		},
 		error: function(a, b){
-			showAlert("Error! gTSR Type: " + b, 5000, 2000);
+			showAlert('<b class="error">Error!</b> gTSR Type: ' + b, 5000, 2000);
 			doneWorking();
 		}
 	})
@@ -696,8 +743,8 @@ function updateSuggestedKeyword(a){
 function instantHash(a){
 	if (hashTimeout) clearTimeout(hashTimeout);
 	hashTimeout = setTimeout(function(){
-		if (currentSuggestion != '') setTitle('"' + currentSuggestion.toTitleCase() + '" on HnS YouTube Instant!');
-		else setTitle('HnS YouTube Instant - Real-time YouTube video surfing.');
+		if (currentSuggestion != '') setTitle('"' + currentSuggestion.toTitleCase() + '" on HnS QueTube Instant!');
+		else setTitle('HnS QueTube Instant - Real-time YouTube video surfing.');
 	}, 1000);
 }
 
@@ -848,7 +895,7 @@ $(document).ready(function(){
 	$('body').html(pcontent);
 	handleSmallScreens();
 	loadPlayer();
-	loadPlaylist();
+	loadQueue();
 	setTimeout("manageQueue();", 3000);
 	setTimeout("getSongPlaylists();randomTip();", 3200);
 	setTimeout("clean();", 100);
