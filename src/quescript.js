@@ -1,14 +1,13 @@
 var pcontent = '<div id="tls"><div class="tl config config_e" title="Show Your Playlist"></div><div class="tl arrowright arrowright_m" title="Skip"></div><div class="tl pinleft pinleft_m" title="Exact Search"></div><div class="tl refresh refresh_b" title="Random From Playlist"></div><div class="tl search" title="Show Song Playlists"></div><div class="alerts"></div></div><div id="oW"><div id="w"><div id="hd" class="cf"><div id="l"><div><span>HnS YouTube Instant</span></div></div><input type="text" id="sB" value="" spellcheck="false"></input><div id="sTW"><div id="sTK"><strong>Search YouTube Instantly</strong></div></div><div id="sug"></div></div><div id="m" class="cf"><div id="vD"><div id="iVD">Loading...</div></div><div id="pD"><div id="pW"><div id="pl" class="cf">&nbsp;</div></div><div id="uP"><div id="pI"><input type="text" id="pB" value="Search The Queue" spellcheck="false"></input></div><ul id="pl" class="cf"></ul></div><div id="sP"><div id="pH"><div id="sPI"><input type="text" id="sPB" value="Search Playlists" spellcheck="false"></input></div><div id="sH"><div id="pN">&nbsp;</div><img id="btp" src="i/back.png"></div></div><ul id="pls" class="cf">&nbsp;</ul><div id="plsr" class="cf">&nbsp;</div></div></div><div id="ft" class="cf"><div id="api"><iframe id="fblike" scrolling="no" frameborder="0" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fyoutube.com&layout=standard&show_faces=true&action=like&font=arial&colorscheme=light&height=70&width=720&send=true" allowTransparency="true"></iframe><div id="sub"><iframe id="twitter" scrolling="no" frameborder="0" src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&text=Watch%20Videos%20On%20YouTube&url=http%3A%2F%2Fwww.youtube.com&via=HnSYouTube" allowtransparency="true"></iframe><iframe id="fbshare" scrolling="no" frameborder="0" src="http://s.youtube-3rd-party.com/facebook_share.html?appid=87741124305&href=http%3A%2F%2Fwww.youtube.com&base_url=http%3A%2F%2Fwww.youtube.com&locale=US" allowtransparency="true"></iframe></div></div></div></div></div></div><div id="hnsft"><div id="fbauth"><fb:login-button autologoutlink="true" perms="user_likes,friends_likes,publish_stream"></fb:login-button><div id="fb-root"></div></div><div id="buzz-container"><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="normal-button" data-url="http://hnsyoutube.webs.com"></a></div><div id="plusone-container"><div class="g-plusone" data-size="standard" data-count="true" data-href="http://hnsyoutube.webs.com"></div></div><iframe id="hnslike" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhnsyoutube.webs.com&layout=standard&show_faces=false&action=like&font=arial&colorscheme=light&height=40&width=550&send=true" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div><img id="hc" src="http://www.website-hit-counters.com/cgi-bin/image.pl?URL=572179-3134">';
 var dC = {
+	"devkey": "AI39si6-KJa9GUrvoNKGEh0rZWfJ2yFrPOxIN79Svnz9zAhosYHrbZfpADwJhd3v6TNl9DbvTtUS_deOcoNCodgvTqq3kxcflw",
 	"title": "HnS YouTube Instant",
 	"remove": "quetube",
 	"vThumbs": 10,
 	"playerWidth": 720,
 	"playerHeight": 405,
 	"thumbHeight": 99,
-	"queue": [["g_h9isVGcE8","First Video"],
-["6qHaIO0LU38","Second Video"],
-["_TSzaSmbR-g","Third Video"]],
+	"queue": [],
 	"playlists": [],
 	"history": [],
 	"sresults": [],
@@ -21,7 +20,6 @@ var dC = {
 	"sPL": false,
 	"sLS": false,
 	"MSIE": false,
-	"tls": false,
 	"tl": {
 		"playlists": false,
 		"exact": false,
@@ -52,7 +50,7 @@ if (supports_local_storage()) dC.sLS = true;
 $.fn.digits = function(){
 	return this.each(function(){
 		$(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-	})
+	});
 };
 
 function getTitle(){
@@ -158,18 +156,14 @@ function div_selection(e){
 	}
 }
 
-function loadPlaylist(){ /* TODO */
+function loadPlaylist(){
 	if (dC.sLS){
-		/*
 		if (localStorage.getItem('queue')){
-			dC.queue = localStorage.getItem('queue').split('|||');
-			localStorage.clear();
-			localStorage.setItem("queue", dC.queue.join('|||'))
-		} else localStorage.clear();
-		*/
+			dC.queue = $.parseJSON(Base64.decode(localStorage.getItem('queue')));
+		}
 		if (dC.queue.length > 0){
 			$.each(dC.queue, function(n, item){
-				$("div#uP ul#pl").append('<li id="' + item[0] + '">' + item[1] + '</li>');
+				$("div#uP ul#pl").append('<li id="' + item[0] + '" style="background-image:url(' + item[2] + ')">' + item[1] + '</li>');
 			});
 		} else $("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
 	}
@@ -191,11 +185,10 @@ function loadSongPlaylists(){
 	var d = [];
 	$.each(dC.playlists, function(a){
 		var b = dC.playlists[a].length;
-		if (a.substring(0, 5) == "Year ") c.push('<li id="' + a + '">' + a.substring(5) + '</li>');
-		else c.push('<li id="' + a + '">' + a + '</li>');
+		c.push('<li id="' + a + '">' + a + '</li>');
 		d.push('<ul class="pl ' + removeChars(' ', a) + '">');
 		for (s = 0; s < b; s++) d.push('<li>' + dC.playlists[a][s] + '</li>');
-		d.push('</ul>')
+		d.push('</ul>');
 	});
 	$("div#sP ul#pls").html(c.join(""));
 	$("div#sP").append(d.join(""));
@@ -258,15 +251,11 @@ $(window).load(function(){
 			doInstantSearch();
 		}
 	});
-	$("div.tl.arrowright").click(function(){ /* TODO */
+	$("div.tl.arrowright").click(function(){
 		var reply = prompt("Admin Access Required To Skip Video", "");
 		if (reply != dC.remove) return;
-		$("div.alerts").promise().done(function(){
-			goNextVideo();
-			$(this).html("Video Skipped").fadeIn(function(){
-				$(this).fadeOut('fast');
-			})
-		});
+		goNextVideo();
+		showAlert("Video Skipped");
 	});
 	$("div.tl.search").click(function(){
 		dC.tl.playlists = !dC.tl.playlists;
@@ -318,10 +307,10 @@ $(window).load(function(){
 	$("div#uP ul#pl li").live('mousedown', function(e){ /* TODO */
 		var a = new div_selection(e);
 		a = a.target_html();
-		if (IsRightButtonClicked(e)){ /* Prompt For Key To Remove From Queue */
+		if (IsRightButtonClicked(e)){
 			e.preventDefault();
-			var reply = prompt("Admin Access To Remove Videos From Queue", "");
-			if (reply == dC.remove) alert("removed");
+			var reply = prompt("Admin Access Required To Remove Video From Queue", "");
+			if (reply == dC.remove) showAlert('Video Removed From Queue');
 			/*
 			var b = dC.queue.vIndex(a);
 			dC.queue.remove(b);
@@ -383,15 +372,12 @@ $(window).load(function(){
 		$("input[type='text']#sB").val(a);
 		doInstantSearch();
 	});
-	$("div#pW div#pl img.addvideo").live('click', function(e){ /* TODO */
+	$("div#pW div#pl img.addvideo").live('click', function(e){
 		var a = new div_selection(e);
-		var item = [
-		// id
-		$.trim(a.target_content()).capitalize() // title
-		// image
-		];
-		console.log(item);
-		// addItemYTQueue(item);
+		var b = new div_selection(e,1);
+		targetid = b.target_id();
+		var item = [targetid, $.trim(a.target_content()).capitalize(), $("#pl #"+targetid+" img.thumb").attr('src')];
+		addItemYTQueue(item);
 	});
 	$("div#pW div#pl img.viewvideo").live('click', function(e){
 		var a = new div_selection(e);
@@ -401,10 +387,9 @@ $(window).load(function(){
 });
 
 function loadPlayer(){
-	currentVideoId = "_2c5Fh3kfrI";
 	var a = {allowScriptAccess: "always"};
-	var b = {id: "ytplayer", allowFullScreen: "true"};
-	swfobject.embedSWF("http://www.youtube.com/v/" + currentVideoId + "?version=3&enablejsapi=1&playerapiid=ytplayer&autoplay=0&loop=1&fs=1&hd=0&showsearch=0&showinfo=1&iv_load_policy=3", "iVD", dC.playerWidth, dC.playerHeight, "8", null, null, a, b)
+	var b = {id: "ytplayer"};
+	swfobject.embedSWF("http://www.youtube.com/apiplayer?version=3&enablejsapi=1&playerapiid=ytplayer", "iVD", dC.playerWidth, dC.playerHeight, "8", null, null, a, b);
 }
 
 function onYouTubePlayerReady(a){
@@ -445,22 +430,25 @@ function onPlayerStateChange(a){
 
 function onPlayerError(a){
 	goNextVideo();
-	$("div.alerts").html("Error! oPE Type: " + a).show().delay(5000).fadeOut(2000)
+	showAlert("Error! oPE Type: " + a, 5000, 2000);
 }
 
-function addItemYTQueue(a){ /* TODO */
+function addItemYTQueue(a){
 	var exists = -1;
 	$.each(dC.queue, function(n,item){
 		exists = $.inArray(a[0], item);
 		if (exists > -1) return false;
 	});
 	if (exists == -1 || isNaN(exists)){
-		if (dC.queue.length == 0) $("div#uP ul#pl li.empty").remove();
+		if (dC.queue.length == 0) {
+			$("div#uP ul#pl li.empty").remove();
+			loadAndPlayVideo(a[0],a[1]);
+		}
 		dC.queue.push(a);
-		// localStorage.setItem("queue", dC.queue.join('|||'));
-		$("div#uP ul#pl").append('<li id="' + a[0] + '"><img class="quethumb" src="' + a[2] + '"/>' + a[1] + '</li>');
+		localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
+		$("div#uP ul#pl").append('<li id="' + a[0] + '" style="background-image:url(' + a[2] + ')">' + a[1] + '</li>');
+		showAlert("<b>Added To Queue #" + dC.queue.length + ":</b> " + a[1], 5000, 2000);
 	}
-	console.log(dC.queue);
 }
 
 function doPlaylistSearch(){
@@ -487,8 +475,7 @@ function updatePSearchResults(c){
 	$.each(c, function(a){
 		var b = c[a].length;
 		if (b == 0) return;
-		if (a.substring(0, 5) == "Year ") d.append('<li id="' + a + '">' + a.substring(5) + '</li>');
-		else d.append('<li id="' + a + '">' + a + '</li>');
+		d.append('<li id="' + a + '">' + a + '</li>');
 		allplaylists.push('<ul class="pl ' + removeChars(' ', a) + '">');
 		for (s = 0; s < b; s++) allplaylists.push('<li>' + c[a][s] + '</li>');
 		allplaylists.push('</ul>');
@@ -543,11 +530,16 @@ function onKeyDown(e){
 }
 
 function goNextVideo(){	
-	if (dC.queue.length > 0){
+	if (dC.queue.length > 1){
 		dC.queue.shift();
 		loadAndPlayVideo(dC.queue[0][0],dC.queue[0][1]);
 		$("#pl li:first-child").remove();
+	} else if (dC.queue.length > 0) {
+		dC.queue.shift();
+		stopVideo();
+		$("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
 	}
+	localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
 }
 
 function doInstantSearch(){
@@ -570,35 +562,19 @@ function doInstantSearch(){
 		dataType: "script",
 		timeout: 2000,
 		error: function(a, b){
-			$("div.alerts").html("Error! dIS Type: " + b).show().delay(5000).fadeOut(2000);
+			showAlert("Error! dIS Type: " + b, 5000, 2000);
 		}
 	});
 	xhrWorking = true;
 }
 
 function cleanInterface(){
-	$("div#pW").slideUp('slow', function(){
-		$(this).empty();
-	});
+	$("div#pW").empty();
 	$("div#sug").empty();
-	playlistShowing = false;
-	pauseVideo();
-	clearVideo();
-	resetTitle();
 	playlistArr = [];
 	currentSuggestion = '';
-	currentVideoTitle = 'YouTube Instant';
-	currentVideoTitles = [];
 	$("input[type='text']#sB").val('');
 	$("div#sTK").html('<strong>Search YouTube Instantly</strong>').attr('title', '');
-	var a = "_2c5Fh3kfrI";
-	loadVideo(a);
-	var b = "http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.youtube.com&layout=standard&show_faces=false&action=like&font=arial&colorscheme=light&height=70&width=720&send=true";
-	var c = "http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&text=Watch%20Videos20On%20YouTube&url=http%3A%2F%2Fwww.youtube.com&via=HnSYouTube";
-	var d = "http://s.youtube-3rd-party.com/facebook_share.html?appid=87741124305&href=http%3A%2F%2Fwww.youtube.com&base_url=http%3A%2F%2Fwww.youtube.com&locale=US";
-	$("div#ft iframe#fblike").attr('src', b);
-	$("div#ft iframe#twitter").attr('src', c);
-	$("div#ft iframe#fbshare").attr('src', d);
 }
 
 yt = {}, yt.www = {}, yt.www.suggest = {};
@@ -655,7 +631,7 @@ function getTopSearchResult(e){
 			}
 		},
 		error: function(a, b){
-			$("div.alerts").html("Error! gTSR Type: " + b).show().delay(5000).fadeOut(2000);
+			showAlert("Error! gTSR Type: " + b, 5000, 2000);
 			doneWorking();
 		}
 	})
@@ -709,7 +685,6 @@ function doneWorking(){
 	xhrWorking = false;
 	if (pendingSearch){
 		pendingSearch = false;
-		//doInstantSearch();
 	}
 	$("input[type='text']#sB").attr('class', 'sP');
 }
@@ -744,18 +719,23 @@ function loadAndPlayVideo(a,currentVideoTitle){
 }
 
 function showAlert(a){
+	var mainargs = arguments;
 	$("div.alerts").promise().done(function(){
-		$(this).html(a).fadeIn(function(){
-			$(this).fadeOut('fast');
-		})
+		if (mainargs.length > 2) {
+			$(this).html(a).show().delay(mainargs[1]).fadeOut(mainargs[2]);
+			if (typeof (mainargs[3]) == 'function') mainargs[3]();
+		} else {
+			$(this).html(a).fadeIn(function(){
+				$(this).fadeOut('fast');
+				if (typeof (mainargs[1]) == 'function') mainargs[1]();
+			});
+		}
 	});
 }
 
 function randomTip(){
 	var a = ['Use the <strong>arrow keys</strong> on your keyboard to skip to the next video!', 'Use tab to finish the rest of your query while typing!', 'Press escape to clean the interface!', 'Click on the config tool to view the queue!', 'Click on the binoculars to search or browse through playlists!', 'Click the plus to add a video to the queue!', 'Upgrade to a Modern Web Broswer! (Chrome, Opera, Firefox, Safari, or IE9)', 'Hover over the play image while viewing the video info to see the video description!'];
-	$('div.alerts').html(a[Math.floor(Math.random() * a.length)]).fadeIn('slow', function(){
-		setTimeout("$('div.alerts').fadeOut(function(){$(this).empty()});", 5000);
-	})
+	showAlert(a[Math.floor(Math.random() * a.length)], 2000, 5000);
 }
 
 function handleSmallScreens(){
@@ -820,8 +800,9 @@ function pauseVideo(){
 	if (ytplayer) ytplayer.pauseVideo();
 }
 
-function clearVideo(){
-	if (ytplayer) ytplayer.clearVideo();
+
+function stopVideo(){
+	if (ytplayer) ytplayer.stopVideo();
 }
 
 function setVolume(v){

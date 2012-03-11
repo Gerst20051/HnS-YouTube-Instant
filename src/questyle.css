@@ -51,7 +51,7 @@ div#tls div.arrowright_m{background-position:-4px -630px}div#tls div.arrowright_
 div#tls div.pinleft_m{background-position:-4px -774px}div#tls div.pinleft_m:hover,div#tls div.pinleft_m.on{background-position:-29px -774px}
 div#tls div.refresh_b{background-position:-2px -1098px}div#tls div.refresh_b:hover,div#tls div.refresh_b.on{background-position:-28px -1098px}
 div#tls div.search{background-position:-4px -1368px}div#tls div.search:hover,div#tls div.search.on{background-position:-29px -1368px}
-div#tls div.alerts{display:none;right:150px;position:absolute;text-align:right;top:3px;width:500px}
+div#tls div.alerts{display:none;right:150px;position:absolute;text-align:right;top:3px;width:900px}
 div#oW{margin:0 5px}
 div#w{margin:0 auto;width:1050px}
 div#l{float:left;margin:0 15px 0 0}
@@ -104,26 +104,26 @@ div#pW div#pl div.vW span.vT:hover{background-color:#666;border:1px solid #000;c
 div#pW div#pl div.vW span.vT span.viewCount{position:relative;top:-2px}
 div#pW div#pl div.vW span.vT img{cursor:pointer;margin-left:5px;position:relative;top:2px}
 div#pW.small div#pl div.vW span.vT img{margin-left:4px;top:1px;width:13px}
-div#uP div#pI{height:40px;width:100%}
-div#uP div#pI input[type="text"]#pB{border:2px solid #999;border-radius:5px;-khtml-border-radius:5px;-moz-border-radius:5px;-opera-border-radius:5px;-webkit-border-radius:5px;font-size:16px;height:30px;margin-right:15px;outline:none;padding:0 5px 0 4px;width:307px}
-div#uP div#pI input[type="text"]#pB:focus{border:2px solid #000}
-div#uP.small div#pI input[type="text"]#pB,div#sP.small div#sPI input[type="text"]#sPB{width:277px}
-div#uP ul#pl{height:365px;margin:0;overflow-x:hidden;overflow-y:auto;width:100%}
-div#uP ul#pl li,div#sP li{background-color:#99bbe8;border:1px solid #999;border-radius:4px;-khtml-border-radius:4px;-moz-border-radius:4px;-opera-border-radius:4px;-webkit-border-radius:4px;cursor:pointer;float:left;list-style:none;margin:1px;padding:2px 6px}
-div#uP ul#pl li{font-family:'reenie beanie',arial,serif;font-size:14px;font-weight:bold}
-div#uP ul#pl li:hover,div#sP li:hover{background-color:#8ad;border:1px solid #888}
-div#sP div#sPI{height:40px;width:100%}
-div#sP div#sPI input[type="text"]#sPB{border:2px solid #999;border-radius:5px;-khtml-border-radius:5px;-moz-border-radius:5px;-opera-border-radius:5px;-webkit-border-radius:5px;font-size:16px;height:30px;margin-right:15px;outline:none;padding:0 5px 0 4px;width:307px}
-div#sP div#sPI input[type="text"]#sPB:focus{border:2px solid #000}
-div#sP ul#pls,div#sP div#plsr ul#pl{height:367px;margin:0;overflow-x:hidden;overflow-y:auto;width:100%}
-div#sP li{font-family:verdana;font-size:11px}
+div#sP div#sPI,div#uP div#pI{height:40px;width:100%}
+div#sP div#sPI input[type="text"]#sPB,div#uP div#pI input[type="text"]#pB{border:2px solid #999;border-radius:5px;-khtml-border-radius:5px;-moz-border-radius:5px;-opera-border-radius:5px;-webkit-border-radius:5px;font-size:16px;height:30px;margin-right:15px;outline:none;padding:0 5px 0 4px;width:307px}
+div#sP div#sPI input[type="text"]#sPB:focus,div#uP div#pI input[type="text"]#pB:focus{border:2px solid #000}
+div#sP.small div#sPI input[type="text"]#sPB,div#uP.small div#pI input[type="text"]#pB{width:277px}
+div#sP ul#pls,div#sP div#plsr ul#pl{height:365px;margin:0;overflow-x:hidden;overflow-y:auto;width:100%}
+div#sP ul.pl{display:none}
+div#sP ul.pl,div#uP ul#pl{height:365px;margin:0;overflow-x:hidden;overflow-y:auto;width:100%}
+div#sP li{cursor:pointer}
+div#sP li,div#uP ul#pl li{background-color:#99bbe8;border:1px solid #999;font-family:verdana;font-size:11px;list-style:none;margin:1px;padding:2px 6px}
+div#sP li:hover,div#uP ul#pl li:hover{background-color:#8ad;border:1px solid #888}
 div#sP div#plsr{display:none;height:367px;overflow:hidden;width:320px}
 div#sP.small div#plsr{width:290px}
-div#sP ul.pl{display:none;height:365px;margin:0;overflow-x:hidden;overflow-y:auto;width:100%}
 div#sP div#pH{height:40px;width:100%}
 div#sP div#pH div#sH{display:none;position:relative}
 div#sP div#pH div#sH div#pN{cursor:default;float:left;font-family:'reenie beanie',arial,serif;font-size:26px;font-weight:bold}
 div#sP div#pH div#sH img#btp{cursor:pointer;position:absolute;right:2px;top:8px}
+div#uP ul#pl li{background-position:6px 50%;background-repeat:no-repeat;background-size:30px;cursor:default;padding:10px 10px 10px 42px}
+div#uP ul#pl li:first-child{background-color:#ff7b77;border:1px solid #e34945}
+div#uP ul#pl li:first-child:hover{background-color:#ff6763;border:1px solid #d93f3b}
+div#uP ul#pl li.empty{padding:10px;text-align:center}
 div#ft{font-size:12px;margin:0;width:100%}
 div#ft div#api{height:30px}
 div#ft div#api iframe#fblike{background-color:transparent;border:none;height:70px;margin-top:2px;overflow:hidden;width:720px}
