@@ -199,6 +199,7 @@ function loadSongPlaylists(){
 	$("div#sP").append(d.join(""));
 	dC.sPL = true;
 }
+
 $(window).load(function(){
 	$("input[type='text']#sB").bind({
 		keydown: function(e){

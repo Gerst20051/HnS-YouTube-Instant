@@ -120,7 +120,7 @@ div#sP div#plsr{display:none;height:367px;overflow:hidden;width:320px}
 div#sP.small div#plsr{width:290px}
 div#sP div#pH{height:40px;width:100%}
 div#sP div#pH div#sH{display:none;position:relative}
-div#sP div#pH div#sH div#pN{cursor:default;float:left;font-family:'reenie beanie',arial,serif;font-size:26px;font-weight:bold}
+div#sP div#pH div#sH div#pN{cursor:default;float:left;font-family:'reenie beanie',arial,serif;font-size:26px;font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:316px}
 div#sP div#pH div#sH img#btp{cursor:pointer;position:absolute;right:2px;top:8px}
 div#uP ul#pl li{background-position:6px 50%;background-repeat:no-repeat;background-size:30px;cursor:default;padding:10px 10px 10px 42px}
 div#uP ul#pl li:first-child{background-color:#ff7b77;border:1px solid #e34945}
