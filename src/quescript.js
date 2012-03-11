@@ -13,6 +13,7 @@ var dC = {
 	"sresults": [],
 	"cplaylist": "",
 	"csplaylist": "",
+	"requirekey": false,
 	"hashqueue": false,
 	"exactSearch": false,
 	"pSResults": false,
@@ -54,29 +55,12 @@ $.fn.digits = function(){
 	});
 };
 
-function getHash() {
-	return decodeURIComponent(window.location.hash.substring(1));
-}
-
-function clearHash() {
-	window.location.replace("#");
-}
-
-function setHash(a) {
-	window.location.replace("#" + encodeURI(a));
-}
-
-function getTitle(){
-	return document.title;
-}
-
-function resetTitle(){
-	document.title = dC.title;
-}
-
-function setTitle(a){
-	document.title = a;
-}
+function getHash(){return decodeURIComponent(window.location.hash.substring(1))}
+function clearHash(){window.location.replace("#")}
+function setHash(a){window.location.replace("#" + encodeURI(a))}
+function getTitle(){return document.title}
+function resetTitle(){document.title = dC.title}
+function setTitle(a){document.title = a}
 
 function removeChars(c, d){
 	if (typeof c == "string") return d.split(c).join('');
@@ -171,9 +155,9 @@ function div_selection(e){
 }
 
 function loadQueue(){
-	if (getHash().length > 0) {
+	if (getHash().length > 0){
 		dC.queue = $.parseJSON(Base64.decode(getHash()));
-		if (!$.isArray(dC.queue) || dC.queue.length < 1) {
+		if (!$.isArray(dC.queue) || dC.queue.length < 1){
 			clearHash();
 			showAlert('<b class="error">Error!</b> Not Valid Queue', 5000, 2000);
 		} else dC.hashqueue = true;
@@ -258,8 +242,10 @@ $(window).load(function(){
 		}
 	});
 	$("div.tl.arrowright").click(function(){
-		var reply = prompt("Admin Access Required To Skip Video", "");
-		if (reply != dC.remove) return;
+		if (dC.requirekey){
+			var reply = prompt("Admin Access Required To Skip Video", "");
+			if (reply != dC.remove) return;
+		}
 		goNextVideo();
 		showAlert('Video Skipped',5000,2000);
 	});
@@ -336,22 +322,24 @@ $(window).load(function(){
 		var b = -1;
 		if (IsRightButtonClicked(e)){
 			e.preventDefault();
-			var reply = prompt("Admin Access Required To Remove Video From Queue", "");
-			if (reply != dC.remove) return;
+			if (dC.requirekey){
+				var reply = prompt("Admin Access Required To Remove Video From Queue", "");
+				if (reply != dC.remove) return;
+			}
 			$.each(dC.queue, function(i,item){
-				if (item[1] == a) {
+				if (item[1] == a){
 					b = i;
 					return false;
 				}
 			});
-			if (b > -1) {
+			if (b > -1){
 				if (dC.queue.length == 1){
 					$("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
 					stopVideo();
 					dC.queue.remove(b);
 					localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
 				} else {
-					if (b == 0) {
+					if (b == 0){
 						goNextVideo();
 					} else {
 						dC.queue.remove(b);
@@ -463,7 +451,7 @@ function onPlayerStateChange(a){
 	if (pendingDoneWorking && playerState == 1){
 		doneWorking();
 		pendingDoneWorking = false;
-	} else if (playerState == 0) {
+	} else if (playerState == 0){
 		goNextVideo();
 	}
 }
@@ -474,20 +462,20 @@ function onPlayerError(a){
 }
 
 function addItemYTQueue(a){
-	if (dC.hashqueue) {
+	if (dC.hashqueue){
 		showAlert('<b class="error">Error!</b> <b>Can\'t view or create your own queue while viewing a shared queue.</b> <a href="http://hnsyoutube.webs.com/quetube.html">Click here</a> to create or view your queue!', 5000, 2000);
 		return;
 	}
 	var exists = -1;
 	$.each(dC.queue, function(n,item){
 		exists = $.inArray(a[0], item);
-		if (exists > -1) {
+		if (exists > -1){
 			showAlert('<b class="error">Error!</b> This video is already in the queue.', 5000, 2000);
 			return false;
 		}
 	});
 	if (exists == -1 || isNaN(exists)){
-		if (dC.queue.length == 0) {
+		if (dC.queue.length == 0){
 			$("div#uP ul#pl li.empty").remove();
 			loadAndPlayVideo(a[0],a[1]);
 		}
@@ -563,9 +551,12 @@ function loadRandomVideo(){
 
 function onKeyDown(e){
 	var a = e.keyCode || e.which, keys = [], bFocus = dC.sBFocus || dC.sPBFocus;
-	if (a == 9) dC.sBFocus;
-	else if (a == 39 || a == 40) bFocus || $("div.tl.arrowright").click();
-	else if (a == 13){
+	if (a == 9){
+		dC.sBFocus || loadRandomVideo();
+		return false;
+	} else if (a == 39 || a == 40){
+		bFocus || $("div.tl.arrowright").click();
+	} else if (a == 13){
 		if (dC.sPBFocus){
 			if (currentPSearch.length > 2 && !dC.pSResults){
 				$("input[type='text']#sB").val($("input[type='text']#sPB").val());
@@ -576,12 +567,12 @@ function onKeyDown(e){
 	if (keys.contains(e.keyCode)) e.preventDefault();
 }
 
-function goNextVideo(){	
+function goNextVideo(){
 	if (dC.queue.length > 1){
 		dC.queue.shift();
 		loadAndPlayVideo(dC.queue[0][0],dC.queue[0][1]);
 		$("#pl li:first-child").remove();
-	} else if (dC.queue.length > 0) {
+	} else if (dC.queue.length > 0){
 		dC.queue.shift();
 		stopVideo();
 		$("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
@@ -681,7 +672,7 @@ function getTopSearchResult(e){
 			showAlert('<b class="error">Error!</b> gTSR Type: ' + b, 5000, 2000);
 			doneWorking();
 		}
-	})
+	});
 }
 
 function updateVideoDisplay(b){
@@ -768,7 +759,7 @@ function loadAndPlayVideo(a,currentVideoTitle){
 function showAlert(a){
 	var mainargs = arguments;
 	$("div.alerts").promise().done(function(){
-		if (mainargs.length > 2) {
+		if (mainargs.length > 2){
 			$(this).html(a).show().delay(mainargs[1]).fadeOut(mainargs[2]);
 			if (typeof (mainargs[3]) == 'function') mainargs[3]();
 		} else {
@@ -826,51 +817,21 @@ function handleSmallScreens(){
 }
 
 function manageQueue(){
-	if (dC.queue.length > 0) {
+	if (dC.queue.length > 0){
 		loadAndPlayVideo(dC.queue[0][0],dC.queue[0][1]);
 		$("div.tl.config").click();
 	}
 }
 
-function loadVideo(a){
-	if (ytplayer){
-		ytplayer.cueVideoById(a);
-		currentVideoId = a;
-	}
-}
-
-function playVideo(){
-	if (ytplayer) ytplayer.playVideo();
-}
-
-function pauseVideo(){
-	if (ytplayer) ytplayer.pauseVideo();
-}
-
-
-function stopVideo(){
-	if (ytplayer) ytplayer.stopVideo();
-}
-
-function setVolume(v){
-	if (ytplayer) ytplayer.setVolume(v);
-}
-
-function getDuration(){
-	if (ytplayer) return ytplayer.getDuration();
-}
-
-function getCurrentTime(){
-	if (ytplayer) return ytplayer.getCurrentTime();
-}
-
-function setSize(w, h){
-	if (ytplayer) return ytplayer.setSize(w, h);
-}
-
-function seekTo(s){
-	if (ytplayer) return ytplayer.seekTo(s, false);
-}
+function loadVideo(a){if (ytplayer){ytplayer.cueVideoById(a);currentVideoId=a}}
+function playVideo(){if (ytplayer) ytplayer.playVideo()}
+function pauseVideo(){if (ytplayer) ytplayer.pauseVideo()}
+function stopVideo(){if (ytplayer) ytplayer.stopVideo()}
+function setVolume(v){if (ytplayer) ytplayer.setVolume(v)}
+function getDuration(){if (ytplayer) return ytplayer.getDuration()}
+function getCurrentTime(){if (ytplayer) return ytplayer.getCurrentTime()}
+function setSize(w,h){if (ytplayer) return ytplayer.setSize(w,h)}
+function seekTo(s){if (ytplayer) return ytplayer.seekTo(s,false)}
 
 function clean(){
 	var a, i, l;
@@ -902,10 +863,5 @@ $(document).ready(function(){
 });
 
 window.fbAsyncInit = function(){
-	FB.init({
-		appId: '131794546903024',
-		status: true,
-		cookie: true,
-		xfbml: true
-	})
+	FB.init({appId:'131794546903024',status:true,cookie:true,xfbml:true})
 };
