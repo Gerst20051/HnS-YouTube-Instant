@@ -7,6 +7,7 @@ var dC = {
 	"playerWidth": 720,
 	"playerHeight": 405,
 	"thumbHeight": 99,
+	"alerts": [],
 	"queue": [],
 	"playlists": [],
 	"history": [],
@@ -120,15 +121,13 @@ function IsRightButtonClicked(e){
 }
 
 function two(x){
-	return ((x > 9) ? "" : "0") + x;
+	return ((x > 9) ? "" : "0") + Math.floor(x);
 }
 
 function gettime(s){
-	var m = Math.floor(s / 60),
-		h = Math.floor(m / 60),
-		d = Math.floor(h / 60);
+	var m = Math.floor(s / 60), h = Math.floor(m / 60), d = Math.floor(h / 60);
 	if (d > 0) t = d + ":" + two(h % 60) + ":" + two(m % 60) + ":" + two(s % 60);
-	else if (h % 60 > 0) t = (h % 60) + ":" + two(m % 60) + ":" + two(s % 60);
+	else if ((h % 60) > 0) t = (h % 60) + ":" + two(m % 60) + ":" + two(s % 60);
 	else t = (m % 60) + ":" + two(s % 60);
 	return t;
 }
@@ -159,7 +158,7 @@ function loadQueue(){
 		dC.queue = $.parseJSON(Base64.decode(getHash()));
 		if (!$.isArray(dC.queue) || dC.queue.length < 1){
 			clearHash();
-			showAlert('<b class="error">Error!</b> Not Valid Queue', 5000, 2000);
+			addAlert('<b class="error">Error!</b> Not Valid Queue', 5000, 2000);
 		} else dC.hashqueue = true;
 	}
 	if (dC.sLS && !dC.hashqueue){
@@ -248,11 +247,11 @@ $(window).load(function(){
 			if (reply != dC.remove) return;
 		}
 		goNextVideo();
-		showAlert('Video Skipped',5000,2000);
+		addAlert('Video Skipped',5000,2000);
 	});
 	$("div.tl.save").click(function(){
 		if (dC.queue.length > 0) prompt("Here is the link to share your current queue!","http://hnsyoutube.webs.com/quetube.html#"+Base64.encode(json_encode(dC.queue)));
-		else showAlert('<b class="error">Error!</b> Current Queue is empty!',5000,2000);
+		else addAlert('<b class="error">Error!</b> Current Queue is empty!',5000,2000);
 	});
 	$("div.tl.pinleft").click(function(){
 		dC.exactSearch = !dC.exactSearch;
@@ -349,7 +348,7 @@ $(window).load(function(){
 					}
 				}
 			}
-			showAlert('Video Removed From Queue', 5000, 2000);
+			addAlert('Video Removed From Queue', 5000, 2000);
 		}
 	});
 	$("div#sP ul#pls li").live('click', function(e){
@@ -459,31 +458,31 @@ function onPlayerStateChange(a){
 
 function onPlayerError(a){
 	goNextVideo();
-	showAlert('<b class="error">Error!</b> oPE Type: ' + a, 5000, 2000);
+	addAlert('<b class="error">Error!</b> oPE Type: ' + a, 5000, 2000);
 }
 
 function addItemYTQueue(a){
 	if (dC.hashqueue){
-		showAlert('<b class="error">Error!</b> <b>Can\'t view or create your own queue while viewing a shared queue.</b> <a href="http://hnsyoutube.webs.com/quetube.html">Click here</a> to create or view your queue!', 5000, 2000);
+		addAlert('<b class="error">Error!</b> <b>Can\'t view or create your own queue while viewing a shared queue.</b> <a href="http://hnsyoutube.webs.com/quetube.html">Click here</a> to create or view your queue!', 5000, 2000);
 		return;
 	}
 	var exists = -1;
 	$.each(dC.queue, function(n,item){
 		exists = $.inArray(a[0], item);
 		if (exists > -1){
-			showAlert('<b class="error">Error!</b> This video is already in the queue.', 5000, 2000);
+			addAlert('<b class="error">Error!</b> This video is already in the queue.', 5000, 2000);
 			return false;
 		}
 	});
 	if (exists == -1 || isNaN(exists)){
 		if (dC.queue.length == 0){
 			$("div#uP ul#pl li.empty").remove();
-			loadAndPlayVideo(a[0],a[1]);
+			loadAndPlayVideo(a);
 		}
 		dC.queue.push(a);
 		localStorage.setItem("queue", Base64.encode(json_encode(dC.queue)));
 		$("div#uP ul#pl").append('<li id="' + a[0] + '" style="background-image:url(' + a[2] + ')">' + a[1] + '</li>');
-		showAlert('<b>Added To Queue #' + dC.queue.length + ':</b> ' + a[1], 5000, 2000);
+		addAlert('<b>Added To Queue #' + dC.queue.length + ':</b> ' + a[1], 5000, 2000);
 	}
 }
 
@@ -570,8 +569,8 @@ function onKeyDown(e){
 
 function goNextVideo(){
 	if (dC.queue.length > 1){
-		dC.queue.shift();
-		loadAndPlayVideo(dC.queue[0][0],dC.queue[0][1]);
+		dC.queue.shift()
+		loadAndPlayVideo(dC.queue[0]);
 		$("#pl li:first-child").remove();
 	} else if (dC.queue.length > 0){
 		dC.queue.shift();
@@ -601,7 +600,7 @@ function doInstantSearch(){
 		dataType: "script",
 		timeout: 2000,
 		error: function(a, b){
-			showAlert('<b class="error">Error!</b> dIS Type: ' + b, 5000, 2000);
+			addAlert('<b class="error">Error!</b> dIS Type: ' + b, 5000, 2000);
 		}
 	});
 	xhrWorking = true;
@@ -670,7 +669,7 @@ function getTopSearchResult(e){
 			}
 		},
 		error: function(a, b){
-			showAlert('<b class="error">Error!</b> gTSR Type: ' + b, 5000, 2000);
+			addAlert('<b class="error">Error!</b> gTSR Type: ' + b, 5000, 2000);
 			doneWorking();
 		}
 	});
@@ -740,41 +739,50 @@ function instantHash(a){
 	}, 1000);
 }
 
-function loadAndPlayVideo(a,currentVideoTitle){
+function loadAndPlayVideo(a){
 	if (ytplayer){
 		xhrWorking = true;
-		ytplayer.loadVideoById(a);
-		currentVideoId = a;
+		ytplayer.loadVideoById(a[0]);
+		currentVideoId = a[0];
 		pendingDoneWorking = true;
 	}
 	var d = $("div#pW");
-	var e = "http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D" + a + "&amp;src=sp";
+	var e = "http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D" + a[0] + "&amp;src=sp";
 	var f = "http://www.facebook.com/plugins/like.php?href=" + e + "&layout=standard&show_faces=false&action=like&font=arial&colorscheme=light&height=70&width=720&send=true";
-	var g = "http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&text=Check%20this%20video%20out%20--%20" + encodeURIComponent(currentVideoTitle) + "&url=" + e + "&via=HnSYouTube";
+	var g = "http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&text=Check%20this%20video%20out%20--%20" + encodeURIComponent(a[1]) + "&url=" + e + "&via=HnSYouTube";
 	var h = "http://s.youtube-3rd-party.com/facebook_share.html?appid=87741124305&href=" + e + "&base_url=" + e + "&locale=US";
 	$("div#ft iframe#fblike").attr('src', f);
 	$("div#ft iframe#twitter").attr('src', g);
 	$("div#ft iframe#fbshare").attr('src', h);
+	window.setTimeout(function(){
+		addAlert("Next Video Starts in " + gettime(getDuration()), 5000, 2000);
+	}, 2000);
 }
 
-function showAlert(a){
-	var mainargs = arguments;
+function addAlert(){
+	if (arguments.length > 0) dC.alerts.push(arguments);
+	if (dC.alerts.length == 1) showAlerts();
+}
+
+function showAlerts(){
 	$("div.alerts").promise().done(function(){
+		var mainargs = dC.alerts.shift();
 		if (mainargs.length > 2){
-			$(this).html(a).show().delay(mainargs[1]).fadeOut(mainargs[2]);
+			$(this).html(mainargs[0]).show().delay(mainargs[1]).fadeOut(mainargs[2]);
 			if (typeof (mainargs[3]) == 'function') mainargs[3]();
 		} else {
-			$(this).html(a).fadeIn(function(){
+			$(this).html(mainargs[0]).fadeIn(function(){
 				$(this).fadeOut('fast');
 				if (typeof (mainargs[1]) == 'function') mainargs[1]();
 			});
 		}
+		if (dC.alerts.length > 0) showAlerts();
 	});
 }
 
 function randomTip(){
 	var a = ['Use the <strong>arrow keys</strong> on your keyboard to skip to the next video!', 'Use tab to finish the rest of your query while typing!', 'Press escape to clean the interface!', 'Click on the config tool to view the queue!', 'Click on the binoculars to search or browse through playlists!', 'Click the plus to add a video to the queue!', 'Upgrade to a Modern Web Broswer! (Chrome, Opera, Firefox, Safari, or IE9)', 'Hover over the play image while viewing the video info to see the video description!'];
-	showAlert(a[Math.floor(Math.random() * a.length)], 2000, 5000);
+	addAlert(a[Math.floor(Math.random() * a.length)], 2000, 5000);
 }
 
 function handleSmallScreens(){
@@ -819,7 +827,7 @@ function handleSmallScreens(){
 
 function manageQueue(){
 	if (dC.queue.length > 0){
-		loadAndPlayVideo(dC.queue[0][0],dC.queue[0][1]);
+		loadAndPlayVideo(dC.queue[0]);
 		$("div.tl.config").click();
 	}
 }
