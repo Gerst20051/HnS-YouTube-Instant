@@ -175,7 +175,7 @@ function loadQueue(){
 
 function getSongPlaylists(){
 	if (dC.sLS && !dC.sPL){
-		$.getJSON("playlists.json", function(a){
+		$.getJSON("queplaylists.json", function(a){
 			if (a.data) localStorage['songPlaylists'] = JSON.stringify(a);
 			loadSongPlaylists();
 		});
