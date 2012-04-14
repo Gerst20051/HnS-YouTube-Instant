@@ -267,6 +267,7 @@ $(window).load(function(){
 	});
 	$("div.tl.refresh").click(function(){
 		loadRandomVideo();
+		if ($("div.tl.search").hasClass("on")) $("div.tl.search").click();
 	});
 	$("div.tl.search").click(function(){
 		dC.tl.playlists = !dC.tl.playlists;
@@ -366,6 +367,7 @@ $(window).load(function(){
 		a = a.target_html();
 		$("input[type='text']#sB").val(a);
 		doInstantSearch();
+		$("div.tl.search").click();
 	});
 	$("div#sP div#pH img#btp").click(function(e){
 		if ($("div#sP div#plsr").is(":hidden")){
@@ -417,7 +419,7 @@ $(window).load(function(){
 function loadPlayer(){
 	var a = {allowScriptAccess: "always"};
 	var b = {id: "ytplayer"};
-	swfobject.embedSWF("http://www.youtube.com/apiplayer?version=3&enablejsapi=1&playerapiid=ytplayer", "iVD", dC.playerWidth, dC.playerHeight, "8", null, null, a, b);
+	swfobject.embedSWF("http://www.youtube.com/apiplayer?version=3&enablejsapi=1&playerapiid=ytplayer&key="+dC.devkey, "iVD", dC.playerWidth, dC.playerHeight, "8", null, null, a, b);
 }
 
 function onYouTubePlayerReady(a){
@@ -594,6 +596,7 @@ function doInstantSearch(){
 	}
 	c.attr('class', 'sL');
 	var d = 'http://suggestqueries.google.com/complete/search?hl=en&ds=yt&client=youtube&hjson=t&jsonp=window.yt.www.suggest.handleResponse&q=' + encodeURIComponent(currentSearch) + '&cp=1';
+	xhrWorking = true;
 	$.ajax({
 		type: "GET",
 		url: d,
@@ -601,9 +604,9 @@ function doInstantSearch(){
 		timeout: 2000,
 		error: function(a, b){
 			addAlert('<b class="error">Error!</b> dIS Type: ' + b, 5000, 2000);
+			doneWorking();
 		}
 	});
-	xhrWorking = true;
 }
 
 function cleanInterface(){
