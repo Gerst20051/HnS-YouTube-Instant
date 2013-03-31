@@ -718,6 +718,7 @@ function onPlayerStateChange(a) {
 		pendingDoneWorking = false
 	} else if (playerState == 0) {
 		if (!$("div.tl.pindown").hasClass("on")) goNextVideo()
+		else seekTo(0);
 	}
 }
 
@@ -1171,7 +1172,7 @@ function setSize(w, h) {
 }
 
 function seekTo(s) {
-	if (ytplayer) return ytplayer.seekTo(s, false)
+	if (ytplayer) return ytplayer.seekTo(s, true)
 }
 
 function clean() {
