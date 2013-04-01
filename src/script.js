@@ -717,7 +717,7 @@ function onPlayerStateChange(a) {
 		doneWorking();
 		pendingDoneWorking = false
 	} else if (playerState == 0) {
-		if (!$("div.tl.pindown").hasClass("on")) goNextVideo()
+		if (!$("div.tl.pindown").hasClass("on")) goNextVideo();
 		else seekTo(0);
 	}
 }
